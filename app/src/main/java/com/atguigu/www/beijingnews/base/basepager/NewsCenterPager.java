@@ -6,12 +6,18 @@ import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
 
+import com.atguigu.www.beijingnews.activity.MainActivity;
 import com.atguigu.www.beijingnews.base.BasePager;
+import com.atguigu.www.beijingnews.bean.NewsCenterBean;
+import com.atguigu.www.beijingnews.fragment.LeftMenuFragment;
 import com.atguigu.www.beijingnews.utils.Constants;
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.List;
 
 /**
  * Created by lenovo on 2017/2/5.
@@ -19,6 +25,8 @@ import org.xutils.x;
  */
 
 public class NewsCenterPager extends BasePager {
+    private List<NewsCenterBean.DataBean> dataBeanList;
+
     public NewsCenterPager(Context mContext) {
         super(mContext);
     }
@@ -47,7 +55,10 @@ public class NewsCenterPager extends BasePager {
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("TAG","请求成功=="+result);
+                Log.e("TAG","请求成功==");
+
+                //解析数据
+                processData(result);
             }
 
             @Override
@@ -68,5 +79,21 @@ public class NewsCenterPager extends BasePager {
 
             }
         });
+    }
+
+    /**
+     * 解析数据
+     * 绑定数据
+     * @param json
+     */
+    private void processData(String json) {
+        NewsCenterBean newsCenterBean = new Gson().fromJson(json, NewsCenterBean.class);
+        dataBeanList = newsCenterBean.getData();
+        MainActivity mainActivity = (MainActivity) mContext;
+        //得到左侧菜单
+        LeftMenuFragment leftMenuFragment = mainActivity.getleftMenuFragment();
+        leftMenuFragment.setData(dataBeanList);
+
+
     }
 }

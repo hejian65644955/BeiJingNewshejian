@@ -56,10 +56,7 @@ public class ContentFragment extends BaseFragment {
         //设置监听
         initsetListener();
 
-        //监听页面的选中
-        viewpager.addOnPageChangeListener(new MyOnPageChangeListener());
-        basePagers.get(1).initData();
-        rgMain.check(R.id.rb_news);
+
     }
 
     class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
@@ -71,9 +68,9 @@ public class ContentFragment extends BaseFragment {
 
         @Override
         public void onPageSelected(int position) {
-            BasePager basePager = basePagers.get(position);
+           // BasePager basePager = basePagers.get(position);
             //调用initData()
-           basePager.initData();//孩子视图与父类视图结合
+            basePagers.get(position).initData();//孩子视图与父类视图结合
 
         }
 
@@ -104,6 +101,10 @@ public class ContentFragment extends BaseFragment {
                 }
             }
         });
+        rgMain.check(R.id.rb_news);
+        //监听页面的选中
+        viewpager.addOnPageChangeListener(new MyOnPageChangeListener());
+        basePagers.get(1).initData();
     }
 
     private void setAdapter() {
