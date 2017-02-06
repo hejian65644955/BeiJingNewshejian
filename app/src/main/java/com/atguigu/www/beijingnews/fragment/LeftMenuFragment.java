@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.atguigu.www.beijingnews.R;
 import com.atguigu.www.beijingnews.activity.MainActivity;
 import com.atguigu.www.beijingnews.base.BaseFragment;
+import com.atguigu.www.beijingnews.base.basepager.NewsCenterPager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
 import com.atguigu.www.beijingnews.utils.DensityUtil;
 
@@ -43,9 +44,23 @@ public class LeftMenuFragment extends BaseFragment {
                 //2.关闭侧滑菜单
                 MainActivity mainActivity = (MainActivity) mContext;
                 mainActivity.getSlidingMenu().toggle();
+                //3.切换到对应的详情页面
+                switchPager(prePosition);
             }
         });
         return listView;
+    }
+
+    /**
+     * 根据位置的切换到不同的详情页面
+     * @param prePosition
+     */
+    private void switchPager(int prePosition) {
+        MainActivity mainActivity = (MainActivity) mContext;
+        ContentFragment contentFragment = mainActivity.getContentFragment();
+        NewsCenterPager newsCenterPager = contentFragment.getNewsCenterPager();
+        newsCenterPager.switchPager(prePosition);
+
     }
 
     @Override
@@ -59,6 +74,8 @@ public class LeftMenuFragment extends BaseFragment {
 
         adapter = new LeftMenuFramgmentAdapter();
         listView.setAdapter(adapter);
+
+        switchPager(prePosition);
     }
     class LeftMenuFramgmentAdapter extends BaseAdapter{
 

@@ -107,6 +107,13 @@ public class ContentFragment extends BaseFragment {
         basePagers.get(1).initData();
     }
 
+    /**
+     *得到新闻中心
+     */
+
+        public NewsCenterPager getNewsCenterPager(){
+            return (NewsCenterPager) basePagers.get(1);
+        }
     private void setAdapter() {
         viewpager.setAdapter(new MyPagerAdapter());
     }

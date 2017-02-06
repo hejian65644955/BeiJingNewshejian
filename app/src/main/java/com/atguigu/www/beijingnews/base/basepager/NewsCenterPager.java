@@ -10,6 +10,10 @@ import android.widget.TextView;
 import com.atguigu.www.beijingnews.activity.MainActivity;
 import com.atguigu.www.beijingnews.base.BasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
+import com.atguigu.www.beijingnews.details.InteractMenuDetailPager;
+import com.atguigu.www.beijingnews.details.NewsMenuDetailPager;
+import com.atguigu.www.beijingnews.details.PhotosMenuDetailPager;
+import com.atguigu.www.beijingnews.details.TopicMenuDetailPager;
 import com.atguigu.www.beijingnews.fragment.LeftMenuFragment;
 import com.atguigu.www.beijingnews.utils.Constants;
 import com.google.gson.Gson;
@@ -18,6 +22,7 @@ import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +32,7 @@ import java.util.List;
 
 public class NewsCenterPager extends BasePager {
     private List<NewsCenterBean.DataBean> dataBeanList;
+    private ArrayList<MenuDetailBasePager> menuDetailBasePagers;
 
     public NewsCenterPager(Context mContext) {
         super(mContext);
@@ -95,8 +101,28 @@ public class NewsCenterPager extends BasePager {
         MainActivity mainActivity = (MainActivity) mContext;
         //得到左侧菜单
         LeftMenuFragment leftMenuFragment = mainActivity.getleftMenuFragment();
+
+        //2.绑定数据
+
+        menuDetailBasePagers = new ArrayList<>();
+        menuDetailBasePagers.add(new NewsMenuDetailPager(mainActivity));//新闻详情页面
+        menuDetailBasePagers.add(new TopicMenuDetailPager(mainActivity));//专题详情页面
+        menuDetailBasePagers.add(new PhotosMenuDetailPager(mainActivity));//组图详情页面
+        menuDetailBasePagers.add(new InteractMenuDetailPager(mainActivity));//互动详情页面
         leftMenuFragment.setData(dataBeanList);
 
 
+    }
+
+    public void switchPager(int prePosition) {
+        //设置标题
+        tv_title.setText(dataBeanList.get(prePosition).getTitle());
+
+        MenuDetailBasePager menuDetailBasePager = menuDetailBasePagers.get(prePosition);
+        menuDetailBasePager.initData();
+
+        View rootView = menuDetailBasePager.rootView;
+        fl_main.removeAllViews();
+        fl_main.addView(rootView);
     }
 }
