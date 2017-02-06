@@ -20,4 +20,27 @@ public class CacheUtils {
         return sp.getBoolean(key,false);
     }
 
+    /**
+     * 缓存文本信息
+     * @param mContext
+     * @param key
+     * @param value
+     */
+
+    public static void putString(Context mContext, String key, String value) {
+        SharedPreferences sp =mContext.getSharedPreferences("atguigu",Context.MODE_PRIVATE);
+        sp.edit().putString(key,value).commit();
+    }
+
+    /**
+     * 得到文本信息
+     * @param mContext
+     * @param key
+     * @return
+     */
+    public static String getString(Context mContext, String key) {
+        SharedPreferences sp =mContext.getSharedPreferences("atguigu",Context.MODE_PRIVATE);
+        return sp.getString(key,"");
+    }
+
 }
