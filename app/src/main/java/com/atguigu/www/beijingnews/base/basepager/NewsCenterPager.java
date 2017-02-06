@@ -20,7 +20,7 @@ public class NewsCenterPager extends BasePager {
     @Override
     public void initData() {
         super.initData();
-
+           
         //设置标题
         tv_title.setText("新闻中心");
         TextView textView = new TextView(mContext);

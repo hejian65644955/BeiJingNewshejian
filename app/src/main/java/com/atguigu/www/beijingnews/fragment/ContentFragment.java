@@ -1,7 +1,6 @@
 package com.atguigu.www.beijingnews.fragment;
 
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
@@ -12,6 +11,7 @@ import com.atguigu.www.beijingnews.base.BasePager;
 import com.atguigu.www.beijingnews.base.basepager.HomePager;
 import com.atguigu.www.beijingnews.base.basepager.NewsCenterPager;
 import com.atguigu.www.beijingnews.base.basepager.SettingPager;
+import com.atguigu.www.beijingnews.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ import butterknife.InjectView;
 public class ContentFragment extends BaseFragment {
 
     @InjectView(R.id.viewpager)
-    ViewPager viewpager;
+    NoScrollViewPager viewpager;
     @InjectView(R.id.rg_main)
     RadioGroup rgMain;
 
@@ -84,7 +84,7 @@ public class ContentFragment extends BaseFragment {
         public Object instantiateItem(ViewGroup container, int position) {
             BasePager basePager = basePagers.get(position);
             View rootView =basePager.rootView;
-            //调用initDate
+            //调用initData
             basePager.initData();
             container.addView(rootView);
             return rootView;

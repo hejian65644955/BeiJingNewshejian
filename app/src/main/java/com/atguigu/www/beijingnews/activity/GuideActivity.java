@@ -97,9 +97,10 @@ public class GuideActivity extends AppCompatActivity {
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             // 红点移动距离 ： 间距 = 手滑动的距离：屏幕宽 = 屏幕滑动的百分比
             // 红点移动距离 = 间距 * 屏幕滑动的百分比
-            int maginLeft = (int) (leftMagin * positionOffset);
+            //int maginLeft = (int) (leftMagin * positionOffset);
             //红点移动的坐标 = 起始坐标 + 红点移动距离
-            maginLeft = position * leftMagin + (int) (leftMagin * positionOffset);
+            //maginLeft = position * leftMagin + (int) (leftMagin * positionOffset);
+            int maginLeft = (int) (leftMagin*(position   +  positionOffset));
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivRedPoint.getLayoutParams();
             params.leftMargin = maginLeft;
             ivRedPoint.setLayoutParams(params);
