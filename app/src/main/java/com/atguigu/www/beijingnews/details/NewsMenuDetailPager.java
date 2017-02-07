@@ -5,6 +5,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.atguigu.www.beijingnews.R;
 import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Created by lenovo on 2017/2/6.
@@ -35,6 +37,8 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
     ViewPager viewpager;
     @InjectView(R.id.indicator)
     TabPageIndicator indicator;
+    @InjectView(R.id.ib_next)
+    ImageButton ibNext;
 
     public NewsMenuDetailPager(Context mContext, NewsCenterBean.DataBean dataBean) {
         super(mContext);
@@ -46,7 +50,7 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
     public View initView() {
         //新闻详细页面的视图
         View view = View.inflate(mContext, R.layout.new_menu_detail_pager, null);
-        ButterKnife.inject(this,view);
+        ButterKnife.inject(this, view);
         return view;
     }
 
@@ -56,8 +60,8 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
         //准备数据-页面
         tabDetailPagers = new ArrayList<>();
-        for(int i = 0;i<childrenData.size();i++){
-            tabDetailPagers.add(new TabDetailPager(mContext,childrenData.get(i)));
+        for (int i = 0; i < childrenData.size(); i++) {
+            tabDetailPagers.add(new TabDetailPager(mContext, childrenData.get(i)));
         }
 
         //设置适配器
@@ -66,7 +70,13 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
         indicator.setViewPager(viewpager);
 
     }
-    class MyPagerAdapter extends PagerAdapter{
+
+    @OnClick(R.id.ib_next)
+    public void onClick() {
+        indicator.setCurrentItem(viewpager.getCurrentItem()+1);
+    }
+
+    class MyPagerAdapter extends PagerAdapter {
 
         @Override
         public CharSequence getPageTitle(int position) {
@@ -80,7 +90,7 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
         @Override
         public boolean isViewFromObject(View view, Object object) {
-            return view ==object;
+            return view == object;
         }
 
         @Override
@@ -89,7 +99,7 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
             tabDetailPager.initData();
             View rootView = tabDetailPager.rootView;
             container.addView(rootView);
-            return  rootView;
+            return rootView;
         }
 
         @Override
