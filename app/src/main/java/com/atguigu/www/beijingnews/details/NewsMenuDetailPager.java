@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.atguigu.www.beijingnews.R;
 import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
     private ArrayList<TabDetailPager> tabDetailPagers;
     @InjectView(R.id.viewpager)
     ViewPager viewpager;
+    @InjectView(R.id.indicator)
+    TabPageIndicator indicator;
 
     public NewsMenuDetailPager(Context mContext, NewsCenterBean.DataBean dataBean) {
         super(mContext);
@@ -60,8 +63,15 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
         //设置适配器
         viewpager.setAdapter(new MyPagerAdapter());
 
+        indicator.setViewPager(viewpager);
+
     }
     class MyPagerAdapter extends PagerAdapter{
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return childrenData.get(position).getTitle();
+        }
 
         @Override
         public int getCount() {
