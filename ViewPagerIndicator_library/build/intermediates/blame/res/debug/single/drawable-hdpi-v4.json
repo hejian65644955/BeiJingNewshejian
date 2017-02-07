@@ -22,5 +22,9 @@
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\vpi__tab_selected_holo.9.png",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\drawable-hdpi\\vpi__tab_selected_holo.9.png"
+    },
+    {
+        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\news_tab_item_bg_select.9.png",
+        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\drawable-hdpi\\news_tab_item_bg_select.9.png"
     }
 ]
