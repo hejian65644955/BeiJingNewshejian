@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -18,6 +19,7 @@ import com.atguigu.www.beijingnews.adapter.TabDetailPagerAdapter;
 import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
 import com.atguigu.www.beijingnews.bean.TabDetailPagerBean;
+import com.atguigu.www.beijingnews.utils.CacheUtils;
 import com.atguigu.www.beijingnews.utils.Constants;
 import com.atguigu.www.beijingnews.utils.DensityUtil;
 import com.atguigu.www.beijingnews.view.HorizontalScrollViewPager;
@@ -43,6 +45,7 @@ import butterknife.InjectView;
 
 public class TabDetailPager extends MenuDetailBasePager {
 
+    public static final String ID_ARRAY = "id_array";
     private final NewsCenterBean.DataBean.ChildrenBean childrenBean;
     private ListView listview;
     private PullToRefreshListView refreshListView;
@@ -89,6 +92,30 @@ public class TabDetailPager extends MenuDetailBasePager {
 
         //设置下拉和上拉刷新
         refreshListView.setOnRefreshListener(new MyOnRefreshListener2());
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //得到bean对象
+                TabDetailPagerBean.DataEntity.NewsEntity newsEntity = news.get(position - 2);
+                String title = newsEntity.getTitle();
+                int id1 = newsEntity.getId();
+
+                //获取是否存在，如果不存在才保存
+                String idArray = CacheUtils.getString(mContext, ID_ARRAY);
+                //如果不包含才保存
+                if(!idArray.contains(id1+"")){
+                    //保存点击过的item的对应的id
+                    CacheUtils.putString(mContext,ID_ARRAY,idArray+id1+",");
+
+
+                    adapter.notifyDataSetChanged();//getCount-->getView
+                    //2.刷新适配器
+                }
+
+
+            }
+        });
 
         return view;
     }

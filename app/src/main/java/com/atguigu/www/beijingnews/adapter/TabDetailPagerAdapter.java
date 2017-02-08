@@ -1,6 +1,7 @@
 package com.atguigu.www.beijingnews.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.atguigu.www.beijingnews.R;
 import com.atguigu.www.beijingnews.bean.TabDetailPagerBean;
+import com.atguigu.www.beijingnews.utils.CacheUtils;
 import com.atguigu.www.beijingnews.utils.Constants;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -17,6 +19,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import static com.atguigu.www.beijingnews.details.TabDetailPager.ID_ARRAY;
 
 /**
  * Created by lenovo on 2017/2/7.
@@ -67,6 +71,15 @@ public class TabDetailPagerAdapter extends BaseAdapter {
                 .placeholder(R.drawable.news_pic_default)
                 .error(R.drawable.news_pic_default)
                 .into(viewHolder.ivIcon);
+
+        //重新从取出保存id数组
+        String idArray = CacheUtils.getString(mContext, ID_ARRAY);
+        if(idArray.contains(newsEntity.getId()+"")){
+            viewHolder.tvTitle.setTextColor(Color.GRAY);
+
+        }else {
+            viewHolder.tvTitle.setTextColor(Color.BLACK);
+        }
         return convertView;
     }
 
