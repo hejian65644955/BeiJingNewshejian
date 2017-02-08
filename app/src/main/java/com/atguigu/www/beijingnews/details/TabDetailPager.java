@@ -17,6 +17,7 @@ import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
 import com.atguigu.www.beijingnews.bean.TabDetailPagerBean;
 import com.atguigu.www.beijingnews.utils.Constants;
+import com.atguigu.www.beijingnews.utils.DensityUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
@@ -48,6 +49,7 @@ public class TabDetailPager extends MenuDetailBasePager {
     private TabDetailPagerAdapter adapter;
     private List<TabDetailPagerBean.DataEntity.NewsEntity> news;
     private List<TabDetailPagerBean.DataEntity.TopnewsEntity> topnews;
+    private int prePosition ;
 
     public TabDetailPager(Context mContext, NewsCenterBean.DataBean.ChildrenBean childrenBean) {
         super(mContext);
@@ -119,7 +121,27 @@ public class TabDetailPager extends MenuDetailBasePager {
         viewpager.setAdapter(new MyPagerAdapter());
         //监听vipager页面变化
         viewpager.addOnPageChangeListener(new MyOnPageChangeListener());
-        tvTitle.setText(topnews.get(0).getTitle());
+        tvTitle.setText(topnews.get(prePosition).getTitle());
+
+        //把之前的移除
+        llGroupPoint.removeAllViews();
+        //添加红点
+        for(int i =0;i<topnews.size();i++){
+            //添加线性布局
+            ImageView point = new ImageView(mContext);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-2, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            if(i!=0){
+                //设置距离左边距离
+                params.leftMargin = DensityUtil.dip2px(mContext,8);
+                point.setEnabled(false);
+            }else{
+                point.setEnabled(true);
+            }
+            point.setLayoutParams(params);
+            point.setBackgroundResource(R.drawable.point_selector);
+            llGroupPoint.addView(point);
+        }
 
     }
 
@@ -127,12 +149,17 @@ public class TabDetailPager extends MenuDetailBasePager {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            //先把之前的变灰
+            llGroupPoint.getChildAt(prePosition).setEnabled(false);
+            //把当前变高亮
+            llGroupPoint.getChildAt(position).setEnabled(true);
+            prePosition = position;
         }
 
         @Override
         public void onPageSelected(int position) {
             tvTitle.setText(topnews.get(position).getTitle());
+
 
         }
 
