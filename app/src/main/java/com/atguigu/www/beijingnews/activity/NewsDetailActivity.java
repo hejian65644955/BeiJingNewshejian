@@ -1,5 +1,7 @@
 package com.atguigu.www.beijingnews.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -34,6 +36,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     @InjectView(R.id.progressbar)
     ProgressBar progressbar;
     private String url;
+    private WebSettings webSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class NewsDetailActivity extends AppCompatActivity {
 
         //webview的使用
         webview.loadUrl(url);
-        WebSettings webSettings = webview.getSettings();
+        webSettings = webview.getSettings();
         //支持js语言
         webSettings.setJavaScriptEnabled(true);
         //添加缩放按钮-页面要支持
@@ -74,11 +77,58 @@ public class NewsDetailActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.ib_textsize:
-                Toast.makeText(this, "设置文字大小", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "设置文字大小", Toast.LENGTH_SHORT).show();
+                showChangeTextSizeDialog();
                 break;
             case R.id.ib_share:
                 Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
+
+    private int tempSize =2;
+    private int realSize =tempSize;
+
+    private void showChangeTextSizeDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String[]  items ={"超大字体","大字体","正常字体","小字体","超小字体"};
+        builder.setTitle("设置文字大小")
+        .setSingleChoiceItems(items, realSize, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                tempSize =which;
+            }
+        })
+        .setNegativeButton("取消",null)
+        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                realSize =tempSize;
+                changeText(realSize);
+            }
+
+
+        }).show();
+    }
+
+    private void changeText(int realSize) {
+        switch (realSize){
+            case 0:
+                webSettings.setTextZoom(300);
+                break;
+            case 1:
+                webSettings.setTextZoom(150);
+                break;
+            case 2:
+                webSettings.setTextZoom(100);
+                break;
+            case 3:
+                webSettings.setTextZoom(75);
+                break;
+            case 4:
+                webSettings.setTextZoom(50);
+                break;
+        }
+    }
+
 }
