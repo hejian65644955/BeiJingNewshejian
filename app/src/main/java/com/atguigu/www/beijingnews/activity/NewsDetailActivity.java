@@ -2,9 +2,11 @@ package com.atguigu.www.beijingnews.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -49,6 +51,13 @@ public class NewsDetailActivity extends AppCompatActivity {
         ibTextsize.setVisibility(View.VISIBLE);
         ibShare.setVisibility(View.VISIBLE);
 
+        setData();
+
+
+
+    }
+
+    private void setData() {
         //webview的使用
         webview.loadUrl(url);
         webSettings = webview.getSettings();
@@ -60,13 +69,28 @@ public class NewsDetailActivity extends AppCompatActivity {
         //支持双击变大变小-页面支持
         webSettings.setUseWideViewPort(true);
 
-     webview.setWebViewClient(new WebViewClient(){
-         @Override
-         public void onPageFinished(WebView view, String url) {
-             super.onPageFinished(view, url);
-             progressbar.setVisibility(View.GONE);
-         }
-     });
+        //监听页面是否加载完成
+        webview.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                progressbar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.loadUrl(request.getUrl().toString());
+                }
+                return true;
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
 
     }
 
