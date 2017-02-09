@@ -6,6 +6,7 @@
 
     <LinearLayout
         android:padding="5dp"
+        android:gravity="center"
         android:background="@drawable/item_photosmenu_detalpager_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,12 +14,14 @@
 
         <ImageView
             android:id="@+id/iv_icon"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="160dp"
             android:scaleType="fitXY"
             android:src="@drawable/news_pic_default" />
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
