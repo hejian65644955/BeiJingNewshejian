@@ -2,10 +2,13 @@ package com.atguigu.www.beijingnews.details;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -64,6 +67,7 @@ public class TabDetailPager extends MenuDetailBasePager {
     private int prePosition ;
     private String moreUrl;
     private boolean isMore =false;
+    private InternalHandler handler;
 
     public TabDetailPager(Context mContext, NewsCenterBean.DataBean.ChildrenBean childrenBean) {
         super(mContext);
@@ -273,8 +277,28 @@ public class TabDetailPager extends MenuDetailBasePager {
             news.addAll(moreNews);
             adapter.notifyDataSetChanged();
         }
+        //顶部轮播图动态切换
+        if(handler ==null){
+            handler =new InternalHandler();
+        }
+        //把之前的所有任务和消息移除
+        handler.removeCallbacksAndMessages(null);
+        handler.postDelayed(new MyRunnable(),3000);
 
 
+    }
+
+    class InternalHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //切换到下一关页面
+           int item= (viewpager.getCurrentItem()+1)%topnews.size();
+            viewpager.setCurrentItem(item);
+            handler.postDelayed(new MyRunnable(),3000);
+
+
+        }
 
     }
 
@@ -298,6 +322,12 @@ public class TabDetailPager extends MenuDetailBasePager {
 
         @Override
         public void onPageScrollStateChanged(int state) {
+            if(state==ViewPager.SCROLL_STATE_DRAGGING){
+                handler.removeCallbacksAndMessages(null);
+            }else if(state ==ViewPager.SCROLL_STATE_IDLE){
+                handler.removeCallbacksAndMessages(null);
+                handler.postDelayed(new MyRunnable(),3000);
+            }
 
         }
     }
@@ -323,18 +353,51 @@ public class TabDetailPager extends MenuDetailBasePager {
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            final TabDetailPagerBean.DataEntity.TopnewsEntity topnewsEntity = topnews.get(position);
             //设置默认和联网请求
-            Glide.with(mContext).load(Constants.BASE_URL+topnews.get(position).getTopimage())
+            Glide.with(mContext).load(Constants.BASE_URL+topnewsEntity.getTopimage())
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     //设置默认图片
                     .placeholder(R.drawable.news_pic_default)
                     .error(R.drawable.news_pic_default)
                     .into(imageView);
             container.addView(imageView);
+
+            //设置触摸监听事件
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            handler.removeCallbacksAndMessages(null);
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            handler.postDelayed(new MyRunnable(),3000);
+                            break;
+                    }
+                    return false;
+                }
+            });
+
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到新闻的浏览页面
+                    Intent intent = new Intent(mContext,NewsDetailActivity.class);
+                    intent.putExtra("url",Constants.BASE_URL+topnewsEntity.getUrl());
+                    mContext.startActivity(intent);
+
+                }
+            });
             return imageView;
         }
     }
 
 
-
+    private class MyRunnable implements Runnable {
+        @Override
+        public void run() {
+            handler.sendEmptyMessage(0);
+        }
+    }
 }
