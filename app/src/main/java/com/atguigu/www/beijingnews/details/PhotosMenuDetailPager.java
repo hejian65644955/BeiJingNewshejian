@@ -1,11 +1,13 @@
 package com.atguigu.www.beijingnews.details;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
 import com.atguigu.www.beijingnews.R;
+import com.atguigu.www.beijingnews.adapter.PhotosMenuDetailPagerAdapter;
 import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
 import com.atguigu.www.beijingnews.bean.PhotosMenuDetailPagerBean;
@@ -28,6 +30,7 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
     @InjectView(R.id.recyclerview)
     RecyclerView recyclerview;
     private String url;
+    private PhotosMenuDetailPagerAdapter adapter;
 
     public PhotosMenuDetailPager(Context mContext, NewsCenterBean.DataBean dataBean) {
         super(mContext);
@@ -40,7 +43,7 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
     @Override
     public View initView() {
         //图组详细页面的视图
-        View view = View.inflate(mContext, R.layout.item_photosmenu_detail_pager, null);
+        View view = View.inflate(mContext, R.layout.photos_menudetail_pager, null);
         ButterKnife.inject(this,view);
         return view;
     }
@@ -67,6 +70,12 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
             private void processData(String json) {
                 PhotosMenuDetailPagerBean bean = new Gson().fromJson(json, PhotosMenuDetailPagerBean.class);
                 Log.e("TAG","数组解析数据成功======"+ bean.getData().getNews().get(0).getTitle());
+                //设置RecyclerView的适配器
+                adapter = new PhotosMenuDetailPagerAdapter(mContext,bean.getData().getNews());
+                recyclerview.setAdapter(adapter);
+
+                //布局管理器
+                recyclerview.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.VERTICAL,false));
             }
 
             @Override
