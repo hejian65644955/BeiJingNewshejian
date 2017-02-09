@@ -34,4 +34,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile project(':pullToRefreshList_library')
     compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile project(':PhotoView_library')
+    compile files('libs/picasso-2.5.2.jar')
 }

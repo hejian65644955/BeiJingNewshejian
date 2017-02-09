@@ -1,4 +1,4 @@
-include ':app', ':AndroidAndJs', ':尚硅谷商城', ':AndroidAndH5'
+include ':app', ':AndroidAndJs', ':尚硅谷商城', ':AndroidAndH5', ':PhotoView-master_sample', ':PhotoView_library'
 include ':SlidingMenu_library'
 include ':ViewPagerIndicator_library'
 include ':ViewPagerIndicator_sample'
