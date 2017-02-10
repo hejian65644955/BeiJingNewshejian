@@ -28,7 +28,7 @@ import butterknife.InjectView;
 public class PhotosMenuDetailPagerAdapter extends RecyclerView.Adapter<PhotosMenuDetailPagerAdapter.ViewHolder> {
     private final List<PhotosMenuDetailPagerBean.DataBean.NewsBean> datas;
     private final Context mContext;
-    private final DisplayImageOptions options;
+    private  DisplayImageOptions options;
 
     public PhotosMenuDetailPagerAdapter(Context mContext, List<PhotosMenuDetailPagerBean.DataBean.NewsBean> news) {
         this.mContext = mContext;

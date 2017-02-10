@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import org.xutils.x;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by lenovo on 2017/2/6.
@@ -26,7 +27,10 @@ public class MyApplication extends Application {
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
 
-        initImageLoader(getApplicationContext());
+        initImageLoader(this);
+
+        //初始化ShareSDK
+        ShareSDK.initSDK(this);
     }
 
     public static void initImageLoader(Context context) {
