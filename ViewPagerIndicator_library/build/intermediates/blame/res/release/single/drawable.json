@@ -100,12 +100,12 @@
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_tab_indicator_material.xml"
     },
     {
-        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_cab_background_top_material.xml",
-        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_cab_background_top_material.xml"
-    },
-    {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_radio_material.xml",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_cab_background_top_material.xml",
+        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_go_search_api_material.xml",
@@ -116,16 +116,16 @@
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\drawable\\vpi__tab_indicator.xml"
     },
     {
-        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\vpi__tab_textcolor_indicator.xml",
-        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\drawable\\vpi__tab_textcolor_indicator.xml"
-    },
-    {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_track_material.xml",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_seekbar_track_material.xml"
     },
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
+    },
+    {
+        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\vpi__tab_textcolor_indicator.xml",
+        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\drawable\\vpi__tab_textcolor_indicator.xml"
     },
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_cab_background_internal_bg.xml",

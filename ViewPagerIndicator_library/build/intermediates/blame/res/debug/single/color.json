@@ -72,12 +72,12 @@
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\color\\abc_tint_btn_checkable.xml"
     },
     {
-        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\color\\vpi__dark_theme.xml",
-        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\color\\vpi__dark_theme.xml"
-    },
-    {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\color\\abc_secondary_text_material_light.xml",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\color\\abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\color\\vpi__dark_theme.xml",
+        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\src\\main\\res\\color\\vpi__dark_theme.xml"
     },
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\color\\abc_primary_text_material_dark.xml",
