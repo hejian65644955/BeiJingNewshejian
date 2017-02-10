@@ -2,6 +2,7 @@ package com.atguigu.www.beijingnews.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import com.atguigu.www.beijingnews.R;
 import com.atguigu.www.beijingnews.activity.PicassoSampleActivity;
 import com.atguigu.www.beijingnews.bean.PhotosMenuDetailPagerBean;
 import com.atguigu.www.beijingnews.utils.Constants;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.util.List;
 
@@ -26,10 +28,22 @@ import butterknife.InjectView;
 public class PhotosMenuDetailPagerAdapter extends RecyclerView.Adapter<PhotosMenuDetailPagerAdapter.ViewHolder> {
     private final List<PhotosMenuDetailPagerBean.DataBean.NewsBean> datas;
     private final Context mContext;
+    private final DisplayImageOptions options;
 
     public PhotosMenuDetailPagerAdapter(Context mContext, List<PhotosMenuDetailPagerBean.DataBean.NewsBean> news) {
         this.mContext = mContext;
         this.datas = news;
+
+        options = new DisplayImageOptions.Builder()
+                .showImageOnLoading(R.drawable.news_pic_default)
+                .showImageForEmptyUri(R.drawable.news_pic_default)
+                .showImageOnFail(R.drawable.news_pic_default)
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .considerExifParams(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .displayer(new RoundedBitmapDisplayer(10))
+                .build();
 
     }
 
@@ -44,11 +58,13 @@ public class PhotosMenuDetailPagerAdapter extends RecyclerView.Adapter<PhotosMen
         PhotosMenuDetailPagerBean.DataBean.NewsBean newsBean = datas.get(position);
         holder.tvTitle.setText(newsBean.getTitle());
         //设置图片和加载图片
-        Glide.with(mContext).load(Constants.BASE_URL+newsBean.getListimage())
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.news_pic_default)
-                .error(R.drawable.news_pic_default)
-                .into(holder.ivIcon);
+//        Glide.with(mContext).load(Constants.BASE_URL+newsBean.getListimage())
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .placeholder(R.drawable.news_pic_default)
+//                .error(R.drawable.news_pic_default)
+//                .into(holder.ivIcon);
+
+        ImageLoader.getInstance().displayImage(Constants.BASE_URL+newsBean.getListimage(), holder.ivIcon, options);
 
 
     }
