@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidAndJs/AndroidAndJs.iml" filepath="$PROJECT_DIR$/AndroidAndJs/AndroidAndJs.iml" />
       <module fileurl="file://$PROJECT_DIR$/BeiJingNews.iml" filepath="$PROJECT_DIR$/BeiJingNews.iml" />
       <module fileurl="file://$PROJECT_DIR$/JPushExample(586163)/JPushExample(586163).iml" filepath="$PROJECT_DIR$/JPushExample(586163)/JPushExample(586163).iml" />
+      <module fileurl="file://$PROJECT_DIR$/OkHttpSample/OkHttpSample.iml" filepath="$PROJECT_DIR$/OkHttpSample/OkHttpSample.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhotoView-master_sample/PhotoView-master_sample.iml" filepath="$PROJECT_DIR$/PhotoView-master_sample/PhotoView-master_sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhotoView_library/PhotoView_library.iml" filepath="$PROJECT_DIR$/PhotoView_library/PhotoView_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/SlidingMenu_library/SlidingMenu_library.iml" filepath="$PROJECT_DIR$/SlidingMenu_library/SlidingMenu_library.iml" />

@@ -72,10 +72,9 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
         indicator.setViewPager(viewpager);
 
         indicator.setOnPageChangeListener(new MyOnPageChangeListener());
-
     }
 
-    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener{
+    class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -85,10 +84,10 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
         @Override
         public void onPageSelected(int position) {
             MainActivity mainActivity = (MainActivity) mContext;
-            if(position == 0){
+            if (position == 0) {
                 //北京可以滑动
                 mainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-            }else {
+            } else {
                 mainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
             }
 
@@ -102,7 +101,7 @@ public class NewsMenuDetailPager extends MenuDetailBasePager {
 
     @OnClick(R.id.ib_next)
     public void onClick() {
-        indicator.setCurrentItem(viewpager.getCurrentItem()+1);
+        indicator.setCurrentItem(viewpager.getCurrentItem() + 1);
     }
 
     class MyPagerAdapter extends PagerAdapter {

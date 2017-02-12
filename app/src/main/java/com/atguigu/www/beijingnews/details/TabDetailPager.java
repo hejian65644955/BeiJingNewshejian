@@ -69,6 +69,7 @@ public class TabDetailPager extends MenuDetailBasePager {
     private boolean isMore =false;
     private InternalHandler handler;
 
+
     public TabDetailPager(Context mContext, NewsCenterBean.DataBean.ChildrenBean childrenBean) {
         super(mContext);
         this.childrenBean = childrenBean;
@@ -125,8 +126,26 @@ public class TabDetailPager extends MenuDetailBasePager {
             }
         });
 
+        refreshListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_UP:
+                        handler.removeCallbacksAndMessages(null);
+
+                        handler.postDelayed(new MyRunnable(),3000);
+
+                        break;
+                }
+                return false;
+            }
+        });
+
         return view;
     }
+
+
 
     class MyOnRefreshListener2 implements PullToRefreshBase.OnRefreshListener2<ListView> {
 

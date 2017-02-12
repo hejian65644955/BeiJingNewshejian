@@ -1,4 +1,4 @@
-include ':app', ':AndroidAndJs', ':尚硅谷商城', ':AndroidAndH5', ':PhotoView-master_sample', ':PhotoView_library', ':JPushExample(586163)', ':Android-Universal-Image-Loader-sample', ':Android-Universal-Image-Loader-sample_library'
+include ':app', ':AndroidAndJs', ':尚硅谷商城', ':AndroidAndH5', ':PhotoView-master_sample', ':PhotoView_library', ':JPushExample(586163)', ':Android-Universal-Image-Loader-sample', ':Android-Universal-Image-Loader-sample_library', ':OkHttpSample'
 include ':SlidingMenu_library'
 include ':ViewPagerIndicator_library'
 include ':ViewPagerIndicator_sample'

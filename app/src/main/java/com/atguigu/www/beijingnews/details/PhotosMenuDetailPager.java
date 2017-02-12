@@ -49,6 +49,9 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
         //图组详细页面的视图
         View view = View.inflate(mContext, R.layout.photos_menudetail_pager, null);
         ButterKnife.inject(this, view);
+
+        //布局管理器
+        recyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         //设置下拉多少距离起作用
         swipeRefreshLayout.setDistanceToTriggerSync(100);//设置下拉的距离
 
@@ -92,9 +95,6 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
                 //设置RecyclerView的适配器
                 adapter = new PhotosMenuDetailPagerAdapter(mContext, bean.getData().getNews());
                 recyclerview.setAdapter(adapter);
-
-                //布局管理器
-                recyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
             }
 
             @Override
