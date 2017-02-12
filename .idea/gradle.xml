@@ -22,9 +22,11 @@
             <option value="$PROJECT_DIR$/ViewPagerIndicator_library" />
             <option value="$PROJECT_DIR$/ViewPagerIndicator_sample" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/okhttputils_library" />
             <option value="$PROJECT_DIR$/pullToRefreshListFragment" />
             <option value="$PROJECT_DIR$/pullToRefreshList_library" />
             <option value="$PROJECT_DIR$/pullToRefreshViewPager" />
+            <option value="$PROJECT_DIR$/sample-okhttp" />
             <option value="$PROJECT_DIR$/尚硅谷商城" />
           </set>
         </option>
