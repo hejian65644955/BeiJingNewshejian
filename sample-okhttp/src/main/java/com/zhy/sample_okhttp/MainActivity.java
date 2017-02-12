@@ -32,7 +32,8 @@ import okhttp3.Request;
 public class MainActivity extends AppCompatActivity
 {
 
-    private String mBaseUrl = "http://192.168.31.242:8888/okHttpServer/";
+//    private String mBaseUrl = "http://192.168.31.242:8888/okHttpServer/";
+    private String mBaseUrl = "http://192.168.1.103:8080/FileUpload/FileUploadServlet";
 
     private static final String TAG = "MainActivity";
 
@@ -250,24 +251,24 @@ public class MainActivity extends AppCompatActivity
     public void uploadFile(View view)
     {
 
-        File file = new File(Environment.getExternalStorageDirectory(), "messenger_01.png");
+        File file = new File(Environment.getExternalStorageDirectory(), "1.jpg");//要上传的图片sd卡中
         if (!file.exists())
         {
             Toast.makeText(MainActivity.this, "文件不存在，请修改文件路径", Toast.LENGTH_SHORT).show();
             return;
         }
         Map<String, String> params = new HashMap<>();
-        params.put("username", "张鸿洋");
+        params.put("username", "atguigu");
         params.put("password", "123");
 
         Map<String, String> headers = new HashMap<>();
         headers.put("APP-Key", "APP-Secret222");
         headers.put("APP-Secret", "APP-Secret111");
 
-        String url = mBaseUrl + "user!uploadFile";
+        String url = mBaseUrl ;
 
         OkHttpUtils.post()//
-                .addFile("mFile", "messenger_01.png", file)//
+                .addFile("mFile", "messenger_01.jpg", file)//
                 .url(url)//
                 .params(params)//
                 .headers(headers)//
@@ -275,11 +276,11 @@ public class MainActivity extends AppCompatActivity
                 .execute(new MyStringCallback());
     }
 
-
+//多个文件上传
     public void multiFileUpload(View view)
     {
-        File file = new File(Environment.getExternalStorageDirectory(), "messenger_01.png");
-        File file2 = new File(Environment.getExternalStorageDirectory(), "test1#.txt");
+        File file = new File(Environment.getExternalStorageDirectory(), "1.jpg");
+        File file2 = new File(Environment.getExternalStorageDirectory(), "1.txt");
         if (!file.exists())
         {
             Toast.makeText(MainActivity.this, "文件不存在，请修改文件路径", Toast.LENGTH_SHORT).show();
@@ -289,7 +290,7 @@ public class MainActivity extends AppCompatActivity
         params.put("username", "张鸿洋");
         params.put("password", "123");
 
-        String url = mBaseUrl + "user!uploadFile";
+        String url = mBaseUrl;
         OkHttpUtils.post()//
                 .addFile("mFile", "messenger_01.png", file)//
                 .addFile("mFile", "test1.txt", file2)//
@@ -302,12 +303,12 @@ public class MainActivity extends AppCompatActivity
 
     public void downloadFile(View view)
     {
-        String url = "https://github.com/hongyangAndroid/okhttp-utils/blob/master/okhttputils-2_4_1.jar?raw=true";
+        String url = "http://vfx.mtime.cn/Video/2017/02/06/mp4/170206092237963117_480.mp4";
         OkHttpUtils//
                 .get()//
                 .url(url)//
                 .build()//
-                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath(), "gson-2.2.1.jar")//
+                .execute(new FileCallBack(Environment.getExternalStorageDirectory().getAbsolutePath()+"/okhttp/", "okhttp_480.mp4")//下载位置mnt/media_rw/sdcard
                 {
 
                     @Override
