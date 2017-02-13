@@ -88,12 +88,12 @@
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
-        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
-        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_switch_thumb_material.xml"
-    },
-    {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
         "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.0\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
         "merged": "C:\\BeiJingNews\\ViewPagerIndicator_library\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
