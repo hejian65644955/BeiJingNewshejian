@@ -15,15 +15,17 @@ import com.atguigu.www.beijingnews.adapter.PhotosMenuDetailPagerAdapter;
 import com.atguigu.www.beijingnews.base.basepager.MenuDetailBasePager;
 import com.atguigu.www.beijingnews.bean.NewsCenterBean;
 import com.atguigu.www.beijingnews.bean.PhotosMenuDetailPagerBean;
+import com.atguigu.www.beijingnews.utils.CacheUtils;
 import com.atguigu.www.beijingnews.utils.Constants;
 import com.google.gson.Gson;
-
-import org.xutils.common.Callback;
-import org.xutils.http.RequestParams;
-import org.xutils.x;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import okhttp3.Call;
+
+import static com.atguigu.www.beijingnews.R.id.swipe_refresh_layout;
 
 /**
  * Created by lenovo on 2017/2/6.
@@ -33,7 +35,7 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
     private final NewsCenterBean.DataBean dataBean;
     @InjectView(R.id.recyclerview)
     RecyclerView recyclerview;
-    @InjectView(R.id.swipe_refresh_layout)
+    @InjectView(swipe_refresh_layout)
     SwipeRefreshLayout swipeRefreshLayout;
     private String url;
     private PhotosMenuDetailPagerAdapter adapter;
@@ -78,41 +80,62 @@ public class PhotosMenuDetailPager extends MenuDetailBasePager {
         getDataFromNet(url);
     }
 
-    private void getDataFromNet(String url) {
-        RequestParams params = new RequestParams(this.url);
-        x.http().get(params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                //Log.e("TAG","请求图片成功========="+result);
-                processData(result);
-                swipeRefreshLayout.setRefreshing(false);
+    private void getDataFromNet(final String url) {
+//        RequestParams params = new RequestParams(this.url);
+//        x.http().get(params, new Callback.CommonCallback<String>() {
+//            @Override
+//            public void onSuccess(String result) {
+//                //Log.e("TAG","请求图片成功========="+result);
+//                processData(result);
+//                swipeRefreshLayout.setRefreshing(false);
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//                Log.e("TAG", "请求图片失败=========" + ex.getMessage());
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//
+//            }
+//        });
 
-            }
+        OkHttpUtils
+                .get()
+                .url(url)
+//                .addParams("username", "atguig")
+//                .addParams("password", "123")
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        Log.e("TAG", "okhttp图组数据请求失败==" + e.getMessage());
+                    }
 
-            private void processData(String json) {
-                PhotosMenuDetailPagerBean bean = new Gson().fromJson(json, PhotosMenuDetailPagerBean.class);
-                Log.e("TAG", "数组解析数据成功======" + bean.getData().getNews().get(0).getTitle());
-                //设置RecyclerView的适配器
-                adapter = new PhotosMenuDetailPagerAdapter(mContext, bean.getData().getNews());
-                recyclerview.setAdapter(adapter);
-            }
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Log.e("TAG", "okhttp图组数据请求成功==");
+                        CacheUtils.putString(mContext, url, response);
+                        processData(response);
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+    }
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                Log.e("TAG", "请求图片失败=========" + ex.getMessage());
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
+    private void processData(String json) {
+        PhotosMenuDetailPagerBean bean = new Gson().fromJson(json, PhotosMenuDetailPagerBean.class);
+        Log.e("TAG", "数组解析数据成功======" + bean.getData().getNews().get(0).getTitle());
+        //设置RecyclerView的适配器
+        adapter = new PhotosMenuDetailPagerAdapter(mContext, bean.getData().getNews());
+        recyclerview.setAdapter(adapter);
     }
 
 

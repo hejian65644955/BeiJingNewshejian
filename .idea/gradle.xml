@@ -16,12 +16,15 @@
             <option value="$PROJECT_DIR$/AndroidAndJs" />
             <option value="$PROJECT_DIR$/JPushExample(586163)" />
             <option value="$PROJECT_DIR$/OkHttpSample" />
+            <option value="$PROJECT_DIR$/OkHttpUtils-master" />
             <option value="$PROJECT_DIR$/PhotoView-master_sample" />
             <option value="$PROJECT_DIR$/PhotoView_library" />
             <option value="$PROJECT_DIR$/SlidingMenu_library" />
             <option value="$PROJECT_DIR$/ViewPagerIndicator_library" />
             <option value="$PROJECT_DIR$/ViewPagerIndicator_sample" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/okhttpserver" />
+            <option value="$PROJECT_DIR$/okhttputils" />
             <option value="$PROJECT_DIR$/okhttputils_library" />
             <option value="$PROJECT_DIR$/pullToRefreshListFragment" />
             <option value="$PROJECT_DIR$/pullToRefreshList_library" />

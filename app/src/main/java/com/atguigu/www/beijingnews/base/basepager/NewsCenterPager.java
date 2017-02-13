@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.atguigu.www.beijingnews.activity.MainActivity;
 import com.atguigu.www.beijingnews.base.BasePager;
@@ -128,26 +129,32 @@ public class NewsCenterPager extends BasePager {
         //设置标题
         tv_title.setText(dataBeanList.get(prePosition).getTitle());
 
-        MenuDetailBasePager menuDetailBasePager = menuDetailBasePagers.get(prePosition);
-        menuDetailBasePager.initData();
+        if(prePosition<menuDetailBasePagers.size()){
 
-        View rootView = menuDetailBasePager.rootView;
-        fl_main.removeAllViews();
-        fl_main.addView(rootView);
+            MenuDetailBasePager menuDetailBasePager = menuDetailBasePagers.get(prePosition);
+            menuDetailBasePager.initData();
 
-        if(prePosition ==2){
-            //组图
-            ib_switch_list_grid.setVisibility(View.VISIBLE);
-            ib_switch_list_grid.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    PhotosMenuDetailPager photosMenuDetailPager = (PhotosMenuDetailPager) menuDetailBasePagers.get(2);
-                    photosMenuDetailPager.swichListGrid(ib_switch_list_grid);
-                }
-            });
-        }else {
-            ib_switch_list_grid.setVisibility(View.GONE);
+            View rootView = menuDetailBasePager.rootView;
+            fl_main.removeAllViews();
+            fl_main.addView(rootView);
 
+            if(prePosition ==2){
+                //组图
+                ib_switch_list_grid.setVisibility(View.VISIBLE);
+                ib_switch_list_grid.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        PhotosMenuDetailPager photosMenuDetailPager = (PhotosMenuDetailPager) menuDetailBasePagers.get(2);
+                        photosMenuDetailPager.swichListGrid(ib_switch_list_grid);
+                    }
+                });
+            }else {
+                ib_switch_list_grid.setVisibility(View.GONE);
+
+            }
+        }else{
+            Toast.makeText(mContext, "该页面暂时未实现", Toast.LENGTH_SHORT).show();
         }
+
     }
 }
