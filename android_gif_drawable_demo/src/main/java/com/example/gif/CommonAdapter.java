@@ -1,6 +1,7 @@
 package com.example.gif;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -83,8 +84,10 @@ public class CommonAdapter extends BaseAdapter {
                                 try {
 
                                     GifDrawable drawable = new GifDrawable(bytes);
-                                    viewHolder.gifImageView
-                                            .setBackground(drawable);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                        viewHolder.gifImageView
+                                                .setBackground(drawable);
+                                    }
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
