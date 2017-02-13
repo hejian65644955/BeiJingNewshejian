@@ -28,6 +28,8 @@
       <module fileurl="file://$PROJECT_DIR$/pullToRefreshViewPager/pullToRefreshViewPager.iml" filepath="$PROJECT_DIR$/pullToRefreshViewPager/pullToRefreshViewPager.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample-okhttp/sample-okhttp.iml" filepath="$PROJECT_DIR$/sample-okhttp/sample-okhttp.iml" />
       <module fileurl="file://$PROJECT_DIR$/upload_file_android/upload_file_android.iml" filepath="$PROJECT_DIR$/upload_file_android/upload_file_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xUtils3-sample/xUtils3-sample.iml" filepath="$PROJECT_DIR$/xUtils3-sample/xUtils3-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xutils_library/xutils_library.iml" filepath="$PROJECT_DIR$/xutils_library/xutils_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/尚硅谷商城/尚硅谷商城.iml" filepath="$PROJECT_DIR$/尚硅谷商城/尚硅谷商城.iml" />
     </modules>
   </component>
